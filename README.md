@@ -3,7 +3,7 @@ I'm excited to present my latest project, a command-line utility suite designed 
 1. fsearch
 The fsearch command allows users to search for a specific string within a file. Whether you're tracking down a piece of code, a configuration setting, or any text, fsearch quickly and accurately locates the desired string.
 
-Usage: fsearch <string> <file>
+Usage: fsearch [string] [file]
 Features:
 Fast and efficient string search within files
 Supports various file formats
@@ -11,7 +11,7 @@ Supports various file formats
 2. dsearch
 The dsearch command is designed to search for files within a directory. It navigates through complex directory structures to find files based on your search criteria, saving you time and effort.
 
-Usage: dsearch <filename> <directory>
+Usage: dsearch [filename] [directory]
 Features:
 Recursive search through directories
 Options to filter by file type, size, and modification date
@@ -19,7 +19,7 @@ Options to filter by file type, size, and modification date
 3. Anant
 Anant is a versatile compiler and executor for C, C++, and Java programs. This command streamlines the process of compiling and running code, providing a unified interface for multiple programming languages.
 
-Usage: Anant <source-file>
+Usage: Anant [source-file]
 Features:
 Supports C, C++, and Java
 Single command to compile and run programs
