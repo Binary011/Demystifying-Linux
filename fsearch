@@ -1,0 +1,64 @@
+#!/usr/bin/bash
+
+# Function to display usage instructions
+usage() {
+    echo "Usage: $0 [-i] <file> <pattern>"
+    echo "  -i    Invert the match"
+    exit 1
+}
+
+# Initialize variables for options
+invert_match=false
+
+# Parse options
+while getopts "i" opt; do
+    case "$opt" in
+        i) invert_match=true ;;
+        *) usage ;;
+    esac
+done
+
+# Remove parsed options from arguments
+shift $((OPTIND - 1))
+
+# Check if the correct number of arguments is provided
+if [ $# -ne 2 ]; then
+    echo "Error: Incorrect number of arguments."
+    usage
+fi
+
+# Extract file and pattern
+file=$1
+pattern=$2
+
+# Debugging output
+echo "File: $file"
+echo "Pattern: $pattern"
+echo "Invert match: $invert_match"
+
+# Check if the file exists
+if [ ! -f "$file" ]; then
+    echo "Error: File '$file' not found."
+    exit 1
+fi
+
+# Construct grep options
+grep_options="-i"
+$invert_match && grep_options+=" -v"
+
+# Debugging output for grep options
+echo "Grep options: $grep_options"
+
+# Search the file for the pattern
+matching_entries=$(grep $grep_options "$pattern" "$file")
+
+# Display matching entries
+echo "Matching entries:"
+echo "$matching_entries"
+
+# Count the number of matching lines
+matching_count=$(echo "$matching_entries" | grep -c "")
+echo "Number of matching entries: $matching_count"
+
+# Exit with the status of the last command
+exit $?
